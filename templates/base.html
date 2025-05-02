@@ -3,6 +3,7 @@
 {% load static %}
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Магазин MyShop{% endblock %}</title>
 
     <!-- Bootstrap CSS -->
@@ -13,23 +14,6 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-
-    <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #f8f9fa;
-        }
-        .navbar-brand {
-            font-weight: bold;
-            font-size: 1.5rem;
-        }
-        .nav-link:hover {
-            text-decoration: underline;
-        }
-        .container {
-            padding-top: 2rem;
-        }
-    </style>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
@@ -61,7 +45,7 @@
     </div>
 </nav>
 
-<main class="container">
+<main class="container py-4">
     {% block content %}{% endblock %}
 </main>
 

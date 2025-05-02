@@ -1,7 +1,5 @@
 from pathlib import Path
 
-BASE_DIR = Path(__file__).resolve().parent.parent
-
 SECRET_KEY = 'django-insecure-bnrq=z-0ukc8j^9o6ndyy6@lz*%q^v5^%m&&c5#$z4wetc_xid'
 
 DEBUG = True
@@ -39,21 +37,25 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'myshop.urls'
 
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],  # ← это важно
-        'APP_DIRS': True,
+        'DIRS': [ BASE_DIR / 'templates' ],  # ← именно здесь Django смотрит в первую очередь
+        'APP_DIRS': True,                    # ← а это позволяет искать в папках <app>/templates/
         'OPTIONS': {
             'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',  # ← нужно для форм входа и т.п.
+                'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'myshop.wsgi.application'
 

@@ -1,29 +1,73 @@
 {% extends 'base.html' %}
 
-{% block title %}Вход - MyShop{% endblock %}
+{% block title %}Вход — MyShop{% endblock %}
 
 {% block content %}
 <div class="row justify-content-center">
-    <div class="col-md-6">
-        <div class="card shadow-sm">
-            <div class="card-header bg-dark text-white text-center">
-                <h4>Вход</h4>
+  <div class="col-md-6 col-lg-4">
+    <div class="card shadow-sm">
+      <div class="card-header bg-dark text-white text-center">
+        <h4 class="mb-0">Вход</h4>
+      </div>
+      <div class="card-body">
+        <form method="post" novalidate class="needs-validation">
+          {% csrf_token %}
+
+          <!-- Username -->
+          <div class="mb-3">
+            <label for="username" class="form-label">Имя пользователя</label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              class="form-control {% if form.username.errors %}is-invalid{% elif form.username.value %}is-valid{% endif %}"
+              placeholder="Введите имя"
+              required
+              value="{{ form.username.value|default_if_none:'' }}"
+            >
+            <div class="invalid-feedback">
+              {% for err in form.username.errors %}{{ err }}{% else %}Пожалуйста, укажите имя пользователя.{% endfor %}
             </div>
-            <div class="card-body">
-                <form method="POST">
-                    {% csrf_token %}
-                    <div class="mb-3">
-                        <label for="username" class="form-label">Имя пользователя</label>
-                        <input type="text" class="form-control" id="username" name="username" required placeholder="Имя пользователя">
-                    </div>
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Пароль</label>
-                        <input type="password" class="form-control" id="password" name="password" required placeholder="Пароль">
-                    </div>
-                    <button type="submit" class="btn btn-dark w-100">Войти</button>
-                </form>
+          </div>
+
+          <!-- Password -->
+          <div class="mb-3">
+            <label for="password" class="form-label">Пароль</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              class="form-control {% if form.password.errors %}is-invalid{% endif %}"
+              placeholder="Введите пароль"
+              required
+            >
+            <div class="invalid-feedback">
+              {% for err in form.password.errors %}{{ err }}{% else %}Пожалуйста, введите пароль.{% endfor %}
             </div>
-        </div>
+          </div>
+
+          <!-- Submit Button -->
+          <button class="btn btn-dark w-100" type="submit">Войти</button>
+        </form>
+      </div>
     </div>
+  </div>
 </div>
+
+<!-- JS для валидации -->
+<script>
+  (() => {
+    'use strict';
+    const forms = document.querySelectorAll('.needs-validation');
+    Array.from(forms).forEach(form => {
+      form.addEventListener('submit', event => {
+        if (!form.checkValidity()) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  })();
+</script>
 {% endblock %}

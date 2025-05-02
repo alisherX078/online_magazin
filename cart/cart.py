@@ -1,6 +1,7 @@
 # cart/cart.py
 from products.models import Product
 
+
 class Cart:
     def __init__(self, request):
         self.session = request.session
@@ -20,11 +21,16 @@ class Cart:
     def save(self):
         self.session.modified = True
 
-    def remove(self, product):
-        product_id = str(product.id)
-        if product_id in self.cart:
-            del self.cart[product_id]
-            self.save()
+    from products.models import Product
+
+    def remove(self, product_id):
+        try:
+            product = Product.objects.get(id=product_id)
+        except Product.DoesNotExist:
+            # Handle product not found case
+            return
+        product_id = str(product.id)  # Now 'product' is an instance
+        # Continue with your removal logic
 
     def get_items(self):
         product_ids = self.cart.keys()

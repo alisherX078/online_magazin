@@ -1,11 +1,15 @@
 {% extends 'base.html' %}
+
+{% block title %}Оформление заказа{% endblock %}
+
 {% block content %}
 <h2>Оформление заказа</h2>
+
 <form method="post">
     {% csrf_token %}
     <div class="mb-3">
-        <label class="form-label">Адрес доставки</label>
-        <input type="text" name="address" class="form-control" required>
+        <label for="address" class="form-label">Адрес доставки</label>
+        <input type="text" class="form-control" id="address" name="address" required>
     </div>
     <button type="submit" class="btn btn-success">Подтвердить заказ</button>
 </form>

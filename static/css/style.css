@@ -1,29 +1,77 @@
+/* Основные стили */
 body {
     background-color: #f8f9fa;
     font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
 .navbar {
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+/* Стили для карточек */
 .card {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border-radius: 8px;  /* Добавлен радиус для углов карточки */
+    overflow: hidden;    /* Убирает возможные бордеры или тени за пределами карточки */
 }
 
 .card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
 }
 
+/* Заголовки */
 h2 {
     margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
 }
 
+/* Стили для кнопок */
 .btn {
     border-radius: 12px;
+    padding: 10px 20px;  /* Немного добавим отступов для улучшения внешнего вида */
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    background-color: #007bff;  /* Начальный цвет фона кнопки */
+    color: white;  /* Цвет текста на кнопке */
 }
 
+.btn:hover {
+    background-color: #0056b3;  /* Цвет при наведении */
+    transform: scale(1.05); /* Легкое увеличение кнопки при наведении */
+}
+
+/* Таблицы */
 .table td, .table th {
     vertical-align: middle;
+    padding: 10px; /* Добавим немного отступов для улучшения читаемости */
+}
+
+/* Стили для адаптивности */
+@media (max-width: 768px) {
+    .card {
+        margin-bottom: 15px; /* Убираем лишние отступы для мобильных устройств */
+    }
+
+    .btn {
+        width: 100%; /* Кнопка будет занимать всю ширину контейнера */
+    }
+}
+
+/* Уведомление */
+.toast {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    font-size: 14px;
+    z-index: 9999;
 }
