@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}Регистрация - MyShop{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card shadow-sm">
+            <div class="card-header bg-dark text-white text-center">
+                <h4>Регистрация</h4>
+            </div>
+            <div class="card-body">
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Имя пользователя</label>
+                        <input type="text" class="form-control" id="username" name="username" required
+                               pattern="[A-Za-z0-9@/./+/-/_]+" maxlength="150" placeholder="Имя пользователя">
+                        <div class="form-text">Обязательное поле. Не более 150 символов. Только буквы, цифры и символы @/./+/-/_.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" required placeholder="Email">
+                    </div>
+                    <div class="mb-3">
+                        <label for="password1" class="form-label">Пароль</label>
+                        <input type="password" class="form-control" id="password1" name="password1" required
+                               minlength="8" placeholder="Пароль">
+                        <div class="form-text">Пароль должен быть не менее 8 символов.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password2" class="form-label">Подтверждение пароля</label>
+                        <input type="password" class="form-control" id="password2" name="password2" required
+                               placeholder="Подтвердите пароль">
+                        <div class="form-text">Для подтверждения введите, пожалуйста, пароль ещё раз.</div>
+                    </div>
+                    <button type="submit" class="btn btn-dark w-100">Зарегистрироваться</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
